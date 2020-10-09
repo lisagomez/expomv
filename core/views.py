@@ -10,6 +10,6 @@ def core_home(request):
     context = {
         'item': Item.objects.all()
     }
-    return render(request, 'core/home.html', context)
+    return render(request, 'core/home-page.html', context)
 
 
