@@ -1,39 +1,37 @@
 from django.contrib import admin
 
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile
-
+from .models import Item,  Order, OrderItem, Payment, Coupon, Refund, Address, UserProfile
 
 def make_refund_accepted(modeladmin, request, queryset):
-    queryset.update(devolucion_solicitada=False, devolucion_garantizada=True)
+    queryset.update(refund_requested=False, refund_granted=True)
 
 
 make_refund_accepted.short_description = 'Update orders to refund granted'
 
-
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['user',
                     'ordered',
-                    'estatus_entregado',
-                    'recibido',
-                    'devolucion_solicitada',
-                    'devolucion_garantizada',
-                    'envio_direccion',
-                    'factura_direccion',
-                    'pago',
-                    'cupon'
+                    'being_delivered',
+                    'received',
+                    'refund_requested',
+                    'refund_granted',
+                    'shipping_address',
+                    'billing_address',
+                    'payment',
+                    'coupon'
                     ]
     list_display_links = [
         'user',
-        'envio_direccion',
-        'factura_direccion',
-        'pago',
-        'cupon'
+        'shipping_address',
+        'billing_address',
+        'payment',
+        'coupon'
     ]
     list_filter = ['ordered',
-                   'estatus_entregado',
-                   'recibido',
-                   'devolucion_solicitada',
-                   'devolucion_garantizada']
+                   'being_delivered',
+                   'received',
+                   'refund_requested',
+                   'refund_granted']
     search_fields = [
         'user__username',
         'ref_code'
@@ -41,18 +39,19 @@ class OrderAdmin(admin.ModelAdmin):
     actions = [make_refund_accepted]
 
 
+
 class AddressAdmin(admin.ModelAdmin):
     list_display = [
         'user',
-        'calle',
-        'municipio',
-        'pais',
-        'codigo_postal',
-        'direccion_tipo',
+        'street_address',
+        'apartment_address',
+        'country',
+        'zip',
+        'address_type',
         'default'
     ]
-    list_filter = ['default', 'direccion_tipo', 'pais']
-    search_fields = ['user', 'calle', 'municipio', 'codigo_postal']
+    list_filter = ['default', 'address_type', 'country']
+    search_fields = ['user', 'street_address', 'apartment_address', 'zip']
 
 admin.site.register(Item)
 admin.site.register(OrderItem)

@@ -10,9 +10,9 @@ from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, View
-
+from django.db.models import F
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from .models import Item, Order, OrderItem, Address, Payment, Coupon, Refund, UserProfile
 
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
@@ -344,7 +344,7 @@ class PaymentView(View):
 class HomeView(ListView):
     model = Item
     paginate_by = 10
-    template_name = "home.html"
+    template_name = "core/home.html"
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
@@ -378,7 +378,8 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
+            order_item.quantity = F('quantity') + 1
+            #  order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
             return redirect("core:order-summary")
