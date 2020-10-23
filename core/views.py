@@ -13,6 +13,7 @@ from django.views.generic import ListView, DetailView, View
 from django.db.models import F
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 from .models import Item, Order, OrderItem, Address, Payment, Coupon, Refund, UserProfile
+from . import views
 
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
