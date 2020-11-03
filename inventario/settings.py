@@ -29,7 +29,7 @@ SECRET_KEY = 'oh!o99)#n^m78umj!#d7j6r-1e&im&78h0shdr)vigj9maz4b&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','mexonlineshopapp.herokuapp.com/']
 
 
 # Application definition
