@@ -98,7 +98,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend', 
 )
 
-WSGI_APPLICATION = 'inventory.wsgi.application'
+WSGI_APPLICATION = 'inventario.wsgi.application'
 
 
 # Database

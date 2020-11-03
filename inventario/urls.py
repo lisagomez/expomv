@@ -41,7 +41,7 @@ urlpatterns = [
          ),
          name='password_reset_complete'),
     path('/inv/', include('inv.urls')),
-    path('', include('core.urls')),
+    path('/', include('core.urls')),
 ]
 
 if settings.DEBUG:
