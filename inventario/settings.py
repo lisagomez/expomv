@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+#importar la aplicacion interfaz de heroku
+import django_heroku
 #libreria cloudinary control de imagenes
 import cloudinary
 import cloudinary.uploader
@@ -172,3 +174,5 @@ cloudinary.config(
   api_key = "362418642911135", 
   api_secret = "bFxlIoaJoI8t-85lpuOVE9D0uHo" 
 )
+
+django_heroku.settings(locals())
