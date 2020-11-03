@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 #importar la aplicacion interfaz de heroku
 import django_heroku
+#importar la interfaz de basededatos
+import dj_database_url
 #libreria cloudinary control de imagenes
 import cloudinary
 import cloudinary.uploader
@@ -106,8 +108,12 @@ WSGI_APPLICATION = 'inventario.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'d971r9lksgh9ck',
+        'USER': 'sozhzsvpvkzdjx',
+        'PASSWORD':'9ce1adfc8d71c0d4951c860086a659ab12aa1307d0ccbc97016aa82f209b908a',
+        'HOST': 'ec2-23-20-70-32.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -147,6 +153,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
