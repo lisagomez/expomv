@@ -6422,7 +6422,7 @@ body.scrollable {
       transform: translate3d(0, 0, 0); } }
 
 .md-form {
-  position: relative;
+  position: absolute;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
   .md-form input:not([type]),
@@ -6853,7 +6853,7 @@ body.scrollable {
     .md-form .prefix ~ .form-text {
       margin-left: 2.6rem; }
   .md-form label {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     font-size: 1rem;

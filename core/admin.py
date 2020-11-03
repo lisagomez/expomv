@@ -1,6 +1,11 @@
 from django.contrib import admin
-
+from import_export.admin import ImportExportModelAdmin
 from .models import Item,  Order, OrderItem, Payment, Coupon, Refund, Address, UserProfile
+
+@admin.register(UserProfile)
+class ViewAdmin(ImportExportModelAdmin):
+    pass
+
 
 def make_refund_accepted(modeladmin, request, queryset):
     queryset.update(refund_requested=False, refund_granted=True)
@@ -60,4 +65,4 @@ admin.site.register(Payment)
 admin.site.register(Coupon)
 admin.site.register(Refund)
 admin.site.register(Address, AddressAdmin)
-admin.site.register(UserProfile)
+#admin.site.register(UserProfile)

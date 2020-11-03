@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+#libreria cloudinary control de imagenes
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,6 +38,7 @@ INSTALLED_APPS = [
     'inv.apps.InvConfig',
     'users.apps.UsersConfig',
     'core',
+    'pictures',
     'django.contrib.admin',
     
     'allauth', 
@@ -47,8 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-     
+    'import_export',
     'crispy_forms',
+
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +162,10 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 SITE_ID = 1
+
+#cloudinary config parameters
+cloudinary.config( 
+  cloud_name = "mexaba", 
+  api_key = "362418642911135", 
+  api_secret = "bFxlIoaJoI8t-85lpuOVE9D0uHo" 
+)

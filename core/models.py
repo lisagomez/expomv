@@ -6,6 +6,7 @@ from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 
@@ -45,7 +46,7 @@ class Item(models.Model):
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
-    image = models.ImageField()
+    image = CloudinaryField('image')
 
     def __str__(self):
         return self.title
